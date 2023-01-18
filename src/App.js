@@ -1,24 +1,33 @@
 import { useState, useEffect } from "react";
 
-function Hello() {
-  useEffect(function () {
-    console.log("created :)");
-    return function () {
-      console.log("destroyed :(");
-    };
-  }, []);
-  return <h1>Hello</h1>;
-}
-
 function App() {
-  const [showing, setShowing] = useState(false);
-  const onClick = () => {
-    setShowing((prev) => !prev);
+  const [toDo, setToDo] = useState("");
+  const [toDos, setToDos] = useState([]);
+  const onChange = (event) => setToDo(event.target.value);
+  const onSubmit = (event) => {
+    event.preventDefault();
+    if (toDo === "") {
+      //toDo가 비었으면 그냥 리턴
+      return;
+    } else {
+      //아니면 toDo를 리스트에 추가하고 초기화 시키기
+      setToDos((currentArray) => [toDo, ...currentArray]);
+      setToDo("");
+    }
   };
+  console.log(toDos);
   return (
     <div>
-      {showing ? <Hello /> : null}
-      <button onClick={onClick}>{showing ? "Hide" : "Show"}</button>
+      <h1>My To Dos({toDos.length})</h1>
+      <form onSubmit={onSubmit}>
+        <input
+          onChange={onChange}
+          value={toDo}
+          type="text"
+          placeholder="Write your to do..."
+        ></input>
+        <button>Add To Do</button>
+      </form>
     </div>
   );
 }
