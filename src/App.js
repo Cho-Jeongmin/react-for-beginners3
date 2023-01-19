@@ -2,51 +2,42 @@ import { useState, useEffect } from "react";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [coins, setCoins] = useState([]);
-  const [price, setPrice] = useState(1);
-  const [amount, setAmount] = useState(1);
-  const onChange = (event) => setAmount(event.target.value);
-  const onSelect = (event) => setPrice(event.target.value);
+  const [movies, setMovies] = useState([]);
+  const getMovies = async () => {
+    const json = await (
+      await fetch(
+        "https://yts.mx/api/v2/list_movies.json?minimum_rating=8.5&sort_by=year"
+      )
+    ).json();
+    setMovies(json.data.movies);
+    setLoading(false);
+  };
   useEffect(() => {
-    fetch("https://api.coinpaprika.com/v1/tickers")
-      .then((response) => response.json())
-      .then((json) => {
-        setCoins(json);
-        setLoading(false);
-      });
+    getMovies();
   }, []);
+  console.log(movies);
   return (
     <div>
-      <h1>The Coins! {loading ? "" : `(${coins.length})`}</h1>
       {loading ? (
-        <strong>Loading...</strong>
+        <h1>Loading...</h1>
       ) : (
-        <select onChange={onSelect} value={price}>
-          <option value="xx">Select a coin</option>
-          {coins.map((coin) => (
-            <option value={coin.quotes.USD.price} key={coin.id}>
-              {coin.name}({coin.symbol}) : ${coin.quotes.USD.price} USD
-            </option>
+        <ul>
+          {movies.map((movie) => (
+            <div key={movie.id}>
+              <img src={movie.medium_cover_image} />
+              <h2>
+                {movie.title}({movie.year})
+              </h2>
+              <p>{movie.summary}</p>
+              <ul>
+                {movie.genres.map((genre, index) => (
+                  <li key={index}>{genre}</li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </select>
+        </ul>
       )}
-      <hr />
-      <div>
-        <div>
-          <label htmlFor="USD">USD</label>
-          <input
-            id="USD"
-            onChange={onChange}
-            value={amount}
-            type="number"
-            placeholder="Enter USD"
-          />
-        </div>
-        <div>
-          <label htmlFor="coin">Coin</label>
-          <input id="coin" value={amount / price} type="number" disabled />
-        </div>
-      </div>
     </div>
   );
 }
