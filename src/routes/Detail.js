@@ -23,21 +23,23 @@ function Detail() {
       ) : (
         <div>
           <img src={movie.background_image} alt={movie.title} />
-          <img src={movie.medium_cover_image} alt={movie.title} />
           <div>
-            <h1>{movie.title}</h1>
-            <h3>{movie.year}</h3>
-            <h3>
-              {Math.floor(movie.runtime / 60)}h {movie.runtime % 60}min
-            </h3>
-            <h3>Rating: {movie.rating}</h3>
-            <h3>Downloads: {movie.download_count}</h3>
-            <ul>
-              {movie.genres.map((genre, index) => (
-                <li key={index}>{genre}</li>
-              ))}
-            </ul>
-            <p>{movie.description_full}</p>
+            <img src={movie.medium_cover_image} alt={movie.title} />
+            <div>
+              <h1>{movie.title}</h1>
+              <h3>{movie.year}</h3>
+              <h3>
+                {Math.floor(movie.runtime / 60)}h {movie.runtime % 60}min
+              </h3>
+              <h3>Rating: {movie.rating}</h3>
+              <h3>Downloads: {movie.download_count}</h3>
+              <ul>
+                {movie.genres.map((genre, index) => (
+                  <li key={index}>{genre}</li>
+                ))}
+              </ul>
+              <p>{movie.description_full}</p>
+            </div>
           </div>
         </div>
       )}
