@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.movie {
+  display: flex;
+  gap: 10px;
+}
+
+.img {
+  margin: 20px;
+  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+    0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+}
+
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 18px;
+}
+
+.info li {
+  margin-right: 30px;
+}
+
+.info li:nth-child(1) {
+  list-style: none;
+}
