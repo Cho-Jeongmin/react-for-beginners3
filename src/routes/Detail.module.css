@@ -14,7 +14,14 @@
     0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
 }
 
+h1 {
+  font-size: 50px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
 .info {
+  list-style: none;
   display: flex;
   flex-wrap: wrap;
   font-size: 18px;
@@ -24,6 +31,16 @@
   margin-right: 30px;
 }
 
-.info li:nth-child(1) {
+.genres {
   list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.genres li {
+  margin-right: 20px;
+}
+
+p {
+  padding: 20px 40px 0px 40px;
 }
