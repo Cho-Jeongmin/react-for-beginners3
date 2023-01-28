@@ -18,7 +18,6 @@ function Detail() {
     getMovie();
   }, []);
   //console.log(movie);
-
   function getcount() {
     if (movie.download_count > 1000000) {
       return (movie.download_count / 1000000).toFixed(1) + "M+";
