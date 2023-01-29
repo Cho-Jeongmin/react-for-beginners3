@@ -1,23 +1,33 @@
 import { useState, useEffect } from "react";
 import Movie from "../components/Movie.js";
 import styles from "./Home.module.css";
+import navList from "../atom/NavList";
+import axios from "axios";
 
 function Home() {
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
-  const getMovies = async () => {
-    const json = await (
-      await fetch(
-        "https://yts.mx/api/v2/list_movies.json?minimum_rating=8.5&sort_by=year"
-      )
-    ).json();
-    setMovies(json.data.movies);
-    setLoading(false);
-  };
+
   useEffect(() => {
-    getMovies();
+    const request = navList.map(({ title, path }) => {
+      return axios.get(`https://yts.mx/api/v2/list_movies.json?${path}`, {
+        params: { limit: 10, sort_by: "year" },
+      });
+    });
+
+    axios.all(request).then(
+      axios.spread(async (...response) => {
+        const data = await response.map((res) => {
+          if (res.status === 200) {
+            return res.data.data.movies;
+          }
+        });
+        console.log(data);
+        setMovies(data[0]);
+        setLoading(false);
+      })
+    );
   }, []);
-  console.log(movies);
   return (
     <div className={styles.container}>
       {loading ? (
