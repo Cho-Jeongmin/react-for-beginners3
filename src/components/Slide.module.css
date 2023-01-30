@@ -1,0 +1,16 @@
+.container {
+}
+
+.slide_show {
+  overflow: hidden;
+}
+
+.slide {
+  display: flex;
+}
+
+.left {
+}
+
+.right {
+}

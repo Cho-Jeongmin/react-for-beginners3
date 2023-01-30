@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Detail from "./routes/Detail";
 import Home from "./routes/Home";
+import Detail from "./routes/Detail";
 import List from "./routes/List";
 import { RecoilRoot } from "recoil";
 
@@ -9,6 +9,9 @@ function App() {
     <RecoilRoot>
       <Router basename={process.env.PUBLIC_URL}>
         <Switch>
+          <Route path="/">
+            <Home />
+          </Route>
           <Route path="/page/:detail/:num">
             <List />
           </Route>

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Movie from "./Movie";
+import styles from "./Slide.module.css";
 
 function Slide({ movieContents }) {
-  const [trans, setTrans] = useState();
+  const [trans, setTrans] = useState(0);
   const onClickL = () => {
     if (trans >= 0) return;
     setTrans((current) => current + 350);
@@ -12,13 +13,16 @@ function Slide({ movieContents }) {
     setTrans((current) => current - 350);
   };
   return (
-    <div>
-      <div>
-        <div style={{ transform: `translateX(${trans})` }}>
+    <div className={styles.container}>
+      <div className={styles.slide_show}>
+        <div
+          className={styles.slide}
+          style={{ transform: `translateX(${trans}px)` }}
+        >
           {movieContents.map((movie) => {
             <Movie
               id={movie.id}
-              coverImg={movie.coverImg}
+              coverImg={movie.medium_cover_image}
               title={movie.title}
               year={movie.year}
               summary={movie.summary}
@@ -28,8 +32,8 @@ function Slide({ movieContents }) {
         </div>
       </div>
       <div>
-        <button onclick={onClickL}></button>
-        <button onClick={onClickR}></button>
+        <button className={styles.left} onClick={onClickL}></button>
+        <button className={styles.right} onClick={onClickR}></button>
       </div>
     </div>
   );

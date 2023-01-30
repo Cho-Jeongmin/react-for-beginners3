@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Movie from "../components/Movie.js";
 import styles from "./Home.module.css";
 import navList from "../atom/NavList";
 import axios from "axios";
+import Slide from "../components/Slide";
 
 function Home() {
-  const [loading, setLoading] = useState(true);
-  const [movies, setMovies] = useState([]);
+  const [movieContents, setMovieContents] = useState([]);
 
   useEffect(() => {
     const request = navList.map(({ title, path }) => {
@@ -23,32 +24,26 @@ function Home() {
           }
         });
         console.log(data);
-        setMovies(data[0]);
-        setLoading(false);
+        setMovieContents(data);
       })
     );
   }, []);
   return (
     <div className={styles.container}>
-      {loading ? (
-        <div className={styles.loader}>
-          <span>Loading...</span>
-        </div>
-      ) : (
-        <div className={styles.movies}>
-          {movies.map((movie) => (
-            <Movie
-              key={movie.id}
-              id={movie.id}
-              coverImg={movie.medium_cover_image}
-              title={movie.title}
-              year={movie.year}
-              summary={movie.summary}
-              genres={movie.genres}
-            />
-          ))}
-        </div>
-      )}
+      {navList.map((nav, idx) => {
+        return (
+          <div className={styles.slide_box} key={idx}>
+            <h3>
+              <Link to={`/page/${nav.path}/1`}>{nav.title}</Link>
+            </h3>
+            {movieContents && movieContents.length === 0 ? (
+              "Loading"
+            ) : (
+              <Slide movieContents={movieContents[idx]}></Slide>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
