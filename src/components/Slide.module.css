@@ -1,12 +1,18 @@
 .container {
+  position: relative;
 }
 
 .slide_show {
+  width: 550px;
+  height: 100px;
   overflow: hidden;
+  border: 10px solid pink;
 }
 
 .slide {
   display: flex;
+  border: 10px solid skyblue;
+  padding: 10px;
 }
 
 .left {
