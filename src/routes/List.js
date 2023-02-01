@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import styles from "./List.module.css";
 import Movie from "../components/Movie.js";
+import Loading from "../components/Loding";
 import { listPageReloading, focusNav } from "../atom/Atoms";
 import { useRecoilState, useSetRecoilState } from "recoil";
 
@@ -31,26 +32,8 @@ function List() {
   }, [reloading]); //reloading을 감시하다가 변화가 있을시 위의 코드가 실행됨
   return (
     <div className={styles.container}>
-      <ul>
-        {loading
-          ? null
-          : listNums.map((listNum) => {
-              return (
-                <li key={listNum}>
-                  <Link
-                    to={`/page/${detail}/${listNum}`}
-                    onClick={() => setReloading(true)}
-                  >
-                    {listNum}
-                  </Link>
-                </li>
-              );
-            })}
-      </ul>
       {loading ? (
-        <div className={styles.loader}>
-          <span>Loading...</span>
-        </div>
+        <Loading />
       ) : (
         <div className={styles.movies}>
           {movies.map((movie) => (
@@ -66,6 +49,22 @@ function List() {
           ))}
         </div>
       )}
+      <ul className={styles.page_nums}>
+        {loading
+          ? null
+          : listNums.map((listNum) => {
+              return (
+                <li key={listNum}>
+                  <Link
+                    to={`/page/${detail}/${listNum}`}
+                    onClick={() => setReloading(true)}
+                  >
+                    {listNum}
+                  </Link>
+                </li>
+              );
+            })}
+      </ul>
     </div>
   );
 }

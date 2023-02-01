@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styles from "./Detail.module.css";
+import Loading from "../components/Loding";
 
 function Detail() {
   const { id } = useParams();
@@ -31,7 +32,7 @@ function Detail() {
   return (
     <div>
       {loading ? (
-        <h1>Loading...</h1>
+        <Loading />
       ) : (
         <div className={styles.container}>
           <img src={movie.background_image} alt={movie.title} />

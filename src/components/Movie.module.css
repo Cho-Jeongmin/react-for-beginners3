@@ -1,17 +1,23 @@
 .movie {
-  background-color: beige;
+  background-color: #fef7ff;
   margin-bottom: 70px;
   font-weight: 300;
   padding: 20px;
   border-radius: 5px;
-  color: #adaeb9;
   display: grid;
   grid-template-columns: minmax(150px, 1fr) 2fr;
+  color: #4b4453;
   grid-gap: 20px;
   text-decoration: none;
-  color: inherit;
   box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
     0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+  transition: all 0.4s ease;
+}
+
+.movie:hover {
+  transform: translateY(-10px);
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 .movie_img {
@@ -24,18 +30,29 @@
     0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
 }
 
+.movie_info {
+  overflow: hidden;
+}
+
 .movie_title,
 .movie_year {
-  margin: 0;
+  margin: 10px 0px;
+  padding-right: 20px;
   font-weight: 300;
   text-decoration: none;
+  text-align: left;
 }
 
 .movie_title a {
+  font-weight: 500;
+  color: #2c2c2c;
   margin-bottom: 5px;
   font-size: 24px;
-  color: #2c2c2c;
   text-decoration: none;
+}
+
+.movie p {
+  padding: 0;
 }
 
 .movie_genres {
@@ -51,4 +68,5 @@
 .movie_year {
   margin-right: 10px;
   font-size: 14px;
+  font-weight: 500;
 }

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
 import Slide from "../components/Slide";
+import Loading from "../components/Loding";
 import navList from "../atom/NavList";
 import axios from "axios";
 
@@ -32,13 +33,15 @@ function Home() {
       {navList.map((nav, idx) => {
         return (
           <div className={styles.slide_box} key={idx}>
-            <h3>
-              <Link to={`/page/${nav.path}/1`}>{nav.title}</Link>
-            </h3>
             {movieContents && movieContents.length === 0 ? (
-              "Loading"
+              <Loading />
             ) : (
-              <Slide movieContents={movieContents[idx]} />
+              <div>
+                <h3>
+                  <Link to={`/page/${nav.path}/1`}>{nav.title} Movies</Link>
+                </h3>{" "}
+                <Slide movieContents={movieContents[idx]} />
+              </div>
             )}
           </div>
         );

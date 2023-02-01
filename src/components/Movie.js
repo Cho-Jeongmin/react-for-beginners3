@@ -6,7 +6,7 @@ function Movie({ id, coverImg, title, year, summary, genres, movie_style }) {
   return (
     <div className={styles.movie} style={movie_style}>
       <img src={coverImg} alt={title} className={styles.movie_img} />
-      <div>
+      <div className={styles.movie_info}>
         <h2 className={styles.movie_title}>
           <Link to={`/movie/${id}`}>
             {title && title.length > 50 ? `${title.slice(0, 50)}...` : title}

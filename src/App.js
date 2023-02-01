@@ -1,12 +1,7 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Switch,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./routes/Home";
-import Detail from "./routes/Detail";
 import List from "./routes/List";
+import Detail from "./routes/Detail";
 import {
   RecoilRoot,
   atom,
@@ -19,17 +14,11 @@ function App() {
   return (
     <RecoilRoot>
       <Router basename={process.env.PUBLIC_URL}>
-        <Switch>
-          <Route path="/">
-            <Home />
-          </Route>
-          <Route path="/page/:detail/:num">
-            <List />
-          </Route>
-          <Route path="/movie/:id">
-            <Detail />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/page/:detail/:num" element={<List />}></Route>
+          <Route path="/movie/:id" element={<Detail />}></Route>
+        </Routes>
       </Router>
     </RecoilRoot>
   );
