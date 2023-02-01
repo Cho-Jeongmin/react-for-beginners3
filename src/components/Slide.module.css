@@ -1,22 +1,45 @@
 .container {
+  border: 10px solid pink;
   position: relative;
 }
 
 .slide_show {
-  width: 550px;
-  height: 100px;
-  overflow: hidden;
-  border: 10px solid pink;
+  border: 10px solid yellow;
+  overflow: hidden; /*밖으로 넘어가는 부분은 숨기기*/
+
+  position: relative;
+  width: 700px; /*가로 길이가 700이니까*/
+  left: calc(50% - 350px); /*가운데에서 왼쪽으로 350가면 가운데 정렬인 셈*/
 }
 
 .slide {
-  display: flex;
-  border: 10px solid skyblue;
-  padding: 10px;
+  width: 3500px; /*가로길이 350인 영화가 10개니까 총가로길이는 3500*/
+  border: 10px solid lightgreen;
+  display: flex; /*영화들이 가로로 배치되도록*/
+  transition: all 0.4s ease; /*css변화가 점차적으로 일어나도록. 모든 변화를 0.5초의 속도로 ease하게*/
+}
+
+.left,
+.right {
+  font-size: 44px;
+  transition: all 0.1s;
+}
+
+/*마우스가 버튼에 올라가 있을 때만*/
+.left:hover,
+.right:hover {
+  cursor: pointer; /*커서를 손가락으로 가리키는 모양으로*/
+  transform: scale(1.1); /*크기를 1.5배로*/
 }
 
 .left {
+  position: absolute;
+  left: calc(50% - 400px);
+  bottom: calc(50% - 10px);
 }
 
 .right {
+  position: absolute;
+  right: calc(50% - 400px);
+  bottom: calc(50% - 10px);
 }

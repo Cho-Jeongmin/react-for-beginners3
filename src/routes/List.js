@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import Movie from "../components/Movie.js";
 import styles from "./List.module.css";
-import navList from "../atom/NavList";
-import axios from "axios";
+import Movie from "../components/Movie.js";
 import { listPageReloading, focusNav } from "../atom/Atoms";
 import { useRecoilState, useSetRecoilState } from "recoil";
 

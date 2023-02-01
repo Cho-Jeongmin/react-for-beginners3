@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Movie from "../components/Movie.js";
 import styles from "./Home.module.css";
+import Slide from "../components/Slide";
 import navList from "../atom/NavList";
 import axios from "axios";
-import Slide from "../components/Slide";
 
 function Home() {
   const [movieContents, setMovieContents] = useState([]);
@@ -12,7 +11,7 @@ function Home() {
   useEffect(() => {
     const request = navList.map(({ title, path }) => {
       return axios.get(`https://yts.mx/api/v2/list_movies.json?${path}`, {
-        params: { limit: 10, sort_by: "year" },
+        params: { limit: 10, sort_by: "year" }, //영화 10개만 가져오기
       });
     });
 
@@ -39,7 +38,7 @@ function Home() {
             {movieContents && movieContents.length === 0 ? (
               "Loading"
             ) : (
-              <Slide movieContents={movieContents[idx]}></Slide>
+              <Slide movieContents={movieContents[idx]} />
             )}
           </div>
         );

@@ -1,8 +1,19 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Switch,
+  Route,
+} from "react-router-dom";
 import Home from "./routes/Home";
 import Detail from "./routes/Detail";
 import List from "./routes/List";
-import { RecoilRoot } from "recoil";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
 
 function App() {
   return (
