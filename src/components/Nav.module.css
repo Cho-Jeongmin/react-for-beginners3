@@ -1,0 +1,17 @@
+.container {
+  position: fixed;
+}
+
+.title {
+}
+
+.option_list {
+}
+
+.icon_list {
+}
+
+.icon_list li {
+  font-size: 24px;
+  padding: 4px 8px;
+}

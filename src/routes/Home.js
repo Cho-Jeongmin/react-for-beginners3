@@ -4,6 +4,7 @@ import styles from "./Home.module.css";
 import Slide from "../components/Slide";
 import Loading from "../components/Loding";
 import navList from "../atom/NavList";
+import Nav from "../components/Nav";
 import axios from "axios";
 
 function Home() {
@@ -30,6 +31,7 @@ function Home() {
   }, []);
   return (
     <div className={styles.container}>
+      <Nav />
       {navList.map((nav, idx) => {
         return (
           <div className={styles.slide_box} key={idx}>
